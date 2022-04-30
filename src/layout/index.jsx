@@ -5,7 +5,7 @@ import Footer from "./Footer";
 
 function Index() {
   return (
-    <div className="min-h-screen flex flex-col justify-between">
+    <div className="min-h-screen flex flex-col justify-between text-white">
       <Header />
       <Content />
       <Footer />
