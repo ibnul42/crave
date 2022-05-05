@@ -8,7 +8,7 @@ function Index() {
     <div className="min-h-screen flex flex-col justify-between text-white">
       <Header />
       <Content />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

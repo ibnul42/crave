@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+  padding: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #170f40;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: radial-gradient(
+    132.75% 155.27% at 31.94% -11.82%,
+    #9186ff 0%,
+    #6d61ff 33.87%,
+    #574aff 91.62%
+  );
+  border-radius: 20px;
+}
