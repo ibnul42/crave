@@ -1,4 +1,9 @@
 import { Fragment, useState } from "react";
+import hot from "../../assets/hot.png";
+import newImg from "../../assets/new.png";
+import top from "../../assets/top.png";
+import rising from "../../assets/rising.png";
+import favs from "../../assets/favs.png";
 import { Popover, Transition } from "@headlessui/react";
 import {
   BookmarkAltIcon,
@@ -18,6 +23,13 @@ import logo from "../../assets/logo.svg";
 import profile from "../../assets/profile.png";
 import arrow from "../../assets/arrow.png";
 
+const menu = [
+  { name: "Hot", imgLink: hot },
+  { name: "New", imgLink: newImg },
+  { name: "Rising", imgLink: rising },
+  { name: "Top", imgLink: top },
+  { name: "Favs", imgLink: favs },
+];
 const menuItems = [
   { name: "popular" },
   { name: "categories" },
@@ -117,10 +129,16 @@ function Index() {
               <img className="h-8 w-auto sm:h-10" src={logo} alt="" />
             </a>
           </div>
+          <div className="md:hidden">Rising</div>
           <div className="mr-2 -my-2 md:hidden">
-            <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <Popover.Button className=" rounded-md inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
               <span className="sr-only">Open menu</span>
-              <MenuIcon className="h-6 w-6" aria-hidden="true" />
+              <div className="w-7 h-5 flex flex-col justify-between items-end">
+                <div className="w-[22px] h-[3px] bg-white rounded-3xl"></div>
+                <div className="w-[28px] h-[3px] bg-gradient-to-t from-[#9186FF] via-[#6D61FF] to-[#574AFF] rounded-3xl"></div>
+                <div className="w-[16px] h-[3px] bg-white rounded-3xl"></div>
+              </div>
+              {/* <MenuIcon className="h-6 w-6" aria-hidden="true" /> */}
             </Popover.Button>
           </div>
           <div className="hidden md:flex justify-between items-center w-7/12">
@@ -203,6 +221,31 @@ function Index() {
             </a> */}
           </div>
         </div>
+        <div className="md:hidden flex justify-center m-4">
+          <div className="uppercase border-[1px] border-[#3E327F] rounded-3xl px-3 font-semibold text-[#7162BF]">
+            <ul className="flex space-x-5">
+              {menuItems.map((item, index) => (
+                <li
+                  className=" cursor-pointer flex items-center"
+                  onClick={() => setActiveMenu(index)}
+                >
+                  <p
+                    className={`py-2 ${
+                      activeMenu === index
+                        ? "border-b-2 border-[#9186FF] text-white"
+                        : ""
+                    }`}
+                  >
+                    {item.name}
+                  </p>
+                  {menuItems.length !== index + 1 && (
+                    <div className="px-2 h-3 border-r-2 border-gray-600"></div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
       <Transition
@@ -216,10 +259,26 @@ function Index() {
       >
         <Popover.Panel
           focus
-          className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+          className="absolute top-0 z-50 inset-x-0 p-2 transition transform origin-top-right md:hidden"
         >
-          <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+          <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-[#261D55] divide-gray-50">
             <div className="pt-5 pb-6 px-5">
+              <div className="flex flex-col text-[#7162BF]">
+                {menu.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`flex justify-between my-4 cursor-pointer ${
+                      index === activeMenu ? "text-white" : ""
+                    }`}
+                    onClick={() => setActiveMenu(index)}
+                  >
+                    <p className="ml-5 font-medium">{item.name}</p>
+                    <img src={item.imgLink} alt="menu" />
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* <div className="pt-5 pb-6 px-5">
               <div className="flex items-center justify-between">
                 <div>
                   <img
@@ -254,8 +313,8 @@ function Index() {
                   ))}
                 </nav>
               </div>
-            </div>
-            <div className="py-6 px-5 space-y-6">
+            </div> */}
+            {/* <div className="py-6 px-5 space-y-6">
               <div>
                 <a
                   href="#!"
@@ -273,7 +332,7 @@ function Index() {
                   </a>
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </Popover.Panel>
       </Transition>
