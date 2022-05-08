@@ -5,6 +5,9 @@ import top from "../../assets/top.png";
 import rising from "../../assets/rising.png";
 import favs from "../../assets/favs.png";
 import { Popover, Transition } from "@headlessui/react";
+
+import startLad from "../../assets/startLad.png";
+import lame from "../../assets/lame.png";
 import {
   BookmarkAltIcon,
   CalendarIcon,
@@ -34,6 +37,19 @@ const menuItems = [
   { name: "popular" },
   { name: "categories" },
   { name: "users" },
+];
+
+const streamers = [
+  {
+    name: "StartLadder5",
+    game: "League of Legends",
+    live: "7.3k",
+    imgLink: startLad,
+  },
+  { name: "ILame", game: "CounterStrike", live: "9.2k", imgLink: lame },
+  { name: "Fallentus", game: "Dota2", live: "1569", imgLink: lame },
+  { name: "Justi99", game: "Player Unknown", live: "2.1k", imgLink: startLad },
+  { name: "Lurn", game: "Fortnites", live: "3500", imgLink: lame },
 ];
 
 const solutions = [
@@ -259,23 +275,36 @@ function Index() {
       >
         <Popover.Panel
           focus
-          className="absolute top-0 z-50 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+          className="absolute top-0 z-50 inset-x-0 p-2 transition transform origin-top-right flex justify-end md:hidden"
         >
-          <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-[#261D55] divide-gray-50">
-            <div className="pt-5 pb-6 px-5">
+          <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-[#261D55] divide-gray-50 w-8/12 ">
+            <div className="py-5 px-3">
               <div className="flex flex-col text-[#7162BF]">
                 {menu.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`flex justify-between my-4 cursor-pointer ${
-                      index === activeMenu ? "text-white" : ""
-                    }`}
-                    onClick={() => setActiveMenu(index)}
-                  >
-                    <p className="ml-5 font-medium">{item.name}</p>
-                    <img src={item.imgLink} alt="menu" />
-                  </div>
+                  <>
+                    <div
+                      key={index}
+                      className={`flex justify-between my-4 cursor-pointer ${
+                        index === activeMenu ? "text-white" : ""
+                      }`}
+                      onClick={() => setActiveMenu(index)}
+                    >
+                      <p className="font-medium">{item.name}</p>
+                      <img src={item.imgLink} alt="menu" />
+                    </div>
+                    {index !== menu.length - 1 && (
+                      <div className="flex justify-center items-center">
+                        <div className="h-[1px] w-9/12 bg-gradient-to-l from-[rgba(70,57,140,0.1)] via-[rgb(62,50,127)] to-[rgba(53,42,113,0.1)]"></div>
+                      </div>
+                    )}
+                  </>
                 ))}
+              </div>
+              <div className="flex flex-col">
+                <h1 className="uppercase font-medium">Top Streamers</h1>
+                <button className="w-full bg-gradient-to-r from-[#9186FF] via-[#6D61FF] to-[#574AFF] rounded-[50px] py-2">
+                  Go to full list
+                </button>
               </div>
             </div>
             {/* <div className="pt-5 pb-6 px-5">
