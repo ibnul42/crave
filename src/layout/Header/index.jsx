@@ -4,6 +4,7 @@ import newImg from "../../assets/new.png";
 import top from "../../assets/top.png";
 import rising from "../../assets/rising.png";
 import favs from "../../assets/favs.png";
+import broadcast from "../../assets/broadcast.png";
 import { Popover, Transition } from "@headlessui/react";
 
 import startLad from "../../assets/startLad.png";
@@ -135,18 +136,29 @@ const recentPosts = [
 
 function Index() {
   const [activeMenu, setActiveMenu] = useState(0);
+  const [selectedMenu, setSelectedMenu] = useState(menu[0].name);
+  const [selectedImage, setSelectedImage] = useState(menu[0].imgLink);
   return (
     <Popover className="relative bg-[#261D55] mb-8">
       <div className="text-gray-400">
-        <div className="flex justify-between items-center md:justify-start mx-8 space-x-5">
+        <div className="flex justify-between items-center md:justify-start mx-8 space-x-5 mt-2">
           <div className="flex justify-start lg:w-0 lg:flex-1 w-2/12">
             <a href="#!">
               <span className="sr-only">Workflow</span>
               <img className="h-8 w-auto sm:h-10" src={logo} alt="" />
             </a>
           </div>
-          <div className="md:hidden">Rising</div>
-          <div className="mr-2 -my-2 md:hidden">
+          <div className="flex space-x-2 items-center md:hidden">
+            <div className="w-[22px] h-[14px]">
+              <img
+                src={selectedImage}
+                alt={selectedMenu}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <p className="text-white font-medium">{selectedMenu}</p>
+          </div>
+          <div className="mr-2 flex items-center md:hidden">
             <Popover.Button className=" rounded-md inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
               <span className="sr-only">Open menu</span>
               <div className="w-7 h-5 flex flex-col justify-between items-end">
@@ -287,7 +299,11 @@ function Index() {
                       className={`flex justify-between my-4 cursor-pointer ${
                         index === activeMenu ? "text-white" : ""
                       }`}
-                      onClick={() => setActiveMenu(index)}
+                      onClick={() => {
+                        setActiveMenu(index);
+                        setSelectedImage(item.imgLink);
+                        setSelectedMenu(item.name);
+                      }}
                     >
                       <p className="font-medium">{item.name}</p>
                       <img src={item.imgLink} alt="menu" />
@@ -302,8 +318,22 @@ function Index() {
               </div>
               <div className="flex flex-col">
                 <h1 className="uppercase font-medium">Top Streamers</h1>
-                <button className="w-full bg-gradient-to-r from-[#9186FF] via-[#6D61FF] to-[#574AFF] rounded-[50px] py-2">
-                  Go to full list
+                <div className="my-2 flex space-x-1 flex-wrap">
+                  {streamers &&
+                    streamers.map((streamer, index) => (
+                      <div className="w-11 h-11 rounded-full  relative">
+                        <img
+                          src={streamer.imgLink}
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute w-3 h-3 rounded-full bg-[#EA4C5F] top-[2px] right-[2px] border-[2px] border-white"></div>
+                      </div>
+                    ))}
+                </div>
+                <button className="w-full bg-gradient-to-r from-[#9186FF] via-[#6D61FF] to-[#574AFF] rounded-[50px] py-2 flex justify-between items-center px-5">
+                  <img src={broadcast} alt="broadcast" />
+                  <p>Go to full list</p>
                 </button>
               </div>
             </div>

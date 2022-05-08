@@ -190,7 +190,7 @@ function Index() {
   return (
     <section className="grid grid-cols-12 gap-5">
       {/* Sidebar section */}
-      <div className=" col-span-3 h-fit flex flex-col flex-grow pb-4 bg-[#261D55] overflow-y-auto rounded-r-3xl">
+      <div className="col-span-3 h-fit hidden md:flex flex-col flex-grow pb-4 bg-[#261D55] overflow-y-auto rounded-r-3xl">
         <div className="ml-3">
           <div className="flex justify-between relative">
             <h3 className="uppercase mb-3 mt-3">Menu</h3>
