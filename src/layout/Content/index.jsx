@@ -247,12 +247,15 @@ function Index() {
       </div>
       <div className="col-span-12 md:col-span-9 h-fit">
         {/* Rising Star */}
-        <div className="flex gap-1 mb-10">
-          <div className="w-8/12 p-3">
-            <h1 className="text-xl font-bold drop-shadow-xl mb-3">
+        <h1 className="text-xl font-bold drop-shadow-xl mb-3 md:hidden mx-2">
+          Rising Stars
+        </h1>
+        <div className="bg-[#302666] md:bg-[#1D1546] rounded-[50px] overflow-hidden flex flex-col md:flex-row gap-1 mb-10 mx-2 md:mx-2">
+          <div className="w-full md:w-7/12 lg:w-8/12 p-1 md:p-3">
+            <h1 className="text-xl font-bold drop-shadow-xl mb-3 hidden md:block">
               Rising Stars
             </h1>
-            <div className="border-4 border-[#302666] rounded-[50px] overflow-hidden h-96 relative">
+            <div className="border-4 border-[#302666] rounded-[50px] overflow-hidden h-48 md:h-96 relative">
               <img
                 src={live}
                 alt="rising-star"
@@ -263,23 +266,25 @@ function Index() {
                 alt="livePlayer"
                 className="absolute top-0 left-0 rounded-br-3xl h-28 w-42 object-cover"
               />
-              <div className="absolute bottom-0 left-0 rounded-br-3xl h-16 w-full bg-gradient-to-r to-[#9186FF] from-[#574AFF] opacity-90 flex justify-between px-10 items-center">
+              <div className="absolute bottom-0 left-0 rounded-br-3xl h-11 md:h-16 w-full bg-gradient-to-r to-[#9186FF] from-[#574AFF] opacity-90 flex justify-between px-10 items-center">
                 <div className="flex gap-2">
-                  <div className="h-20 w-20 rounded-full -mt-10 overflow-hidden">
+                  <div className="h-[56px] md:h-20 w-[56px] md:w-20 rounded-full -mt-4 md:-mt-10 overflow-hidden">
                     <img
                       src={onlinePlayer}
                       alt="online"
-                      className="object-cover"
+                      className="h-full w-full object-cover"
                     />
                   </div>
                   <div className="">
                     <h1 className="text-white font-bold hover:underline cursor-pointer">
                       Fortnite
                     </h1>
-                    <p className="hover:underline cursor-pointer">StarLadder</p>
+                    <p className="hover:underline cursor-pointer text-[rgba(255,255,255,0.6)] font-normal">
+                      StarLadder
+                    </p>
                   </div>
                 </div>
-                <div className="w-28 h-10 bg-[#735AF0] rounded-full px-5 flex justify-between items-center">
+                <div className="w-28 h-8 md:h-10 bg-[#735AF0] rounded-full px-2 md:px-5 flex justify-between items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -304,8 +309,10 @@ function Index() {
               </div>
             </div>
           </div>
-          <div className="w-4/12 p-3">
-            <h1 className="text-xl font-bold drop-shadow-xl mb-3">Live Chat</h1>
+          <div className="w-full md:w-5/12 lg:w-4/12 p-1 md:p-3">
+            <h1 className="hidden md:block text-xl font-bold drop-shadow-xl mb-3">
+              Live Chat
+            </h1>
             <div className="bg-[#302666] h-96 rounded-[50px] overflow-hidden relative">
               <div className="flex justify-between items-center mx-5 my-4">
                 <div className="flex justify-between items-center gap-3">
@@ -324,10 +331,15 @@ function Index() {
                 </div>
               </div>
               <div className="w-full h-[1px] bg-gradient-to-r from-[rgba(70,57,140,0.05)] via-[#3E327F] to-[rgba(53,42,113,0.05)] "></div>
-              <div className="absolute left-0 bottom-0 h-[66px] w-full bg-gradient-to-r from-[rgb(145,134,255,0.27)] via-[rgb(109,97,255,0.27)] to-[rgb(87,74,255,0.27)] px-8 flex items-center gap-3">
+
+              {/* messages */}
+              <div className="my-1"></div>
+              {/* messages */}
+
+              <div className="absolute left-0 bottom-0 h-[66px] w-full bg-gradient-to-r from-[rgb(145,134,255,0.27)] via-[rgb(109,97,255,0.27)] to-[rgb(87,74,255,0.27)] px-8 flex items-center justify-between gap-3 md:gap-0 lg:gap-3">
                 <input
                   type="text"
-                  className="bg-[#1E1647] h-10 w-60 rounded-3xl px-3 placeholder:px-5 focus:px-2"
+                  className="bg-[#1E1647] h-10 w-48 md:w-32 xl:w-60 rounded-3xl px-3 placeholder:px-5 focus:px-2"
                   placeholder="White a message"
                 />
                 <img src={send} alt="sendMsg" className="" />
@@ -458,13 +470,16 @@ function Index() {
         <div className="p-3">
           <h1 className="text-xl font-bold drop-shadow-xl mb-3">Suggestions</h1>
           <div
-            className={`my-3 flex justify-between gap-4 flex-wrap overflow-hidden ${
+            className={`my-3 flex justify-between gap-4 flex-nowrap md:flex-wrap overflow-x-auto md:overflow-hidden ${
               !moreSuggestion ? "h-[344px]" : ""
             }`}
           >
             {suggestions.map((item, index) => (
-              <div className="w-[340px] overflow-hidden" key={index}>
-                <div className="rounded-[50px] w-[340px] h-[220px] relative overflow-hidden mb-1">
+              <div
+                className="w-8/12 md:w-[340px] flex-shrink-0 overflow-hidden"
+                key={index}
+              >
+                <div className="rounded-[50px] w-[218px] md:w-[340px] h-[160px] md:h-[220px] relative overflow-hidden mb-1">
                   <img
                     src={item.imageLink}
                     alt="suggestions"
@@ -489,27 +504,27 @@ function Index() {
                   <div className="">
                     <h1>{item.name}</h1>
                     <p className="text-[#7162BF] text-[13px]">{item.user}</p>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-3 text-[13px]">
                       {item.properties && (
                         <>
                           {item.properties.watched && (
-                            <div className="bg-[#735AF0] rounded-[50px] px-3 flex items-center gap-2">
+                            <div className="bg-[#735AF0] rounded-[50px] px-2 md:px-3 flex items-center gap-2">
                               <img src={eye} alt="eye" />
                               <p>{item.properties.watched}</p>
                             </div>
                           )}
                           {item.properties.uploaded && (
-                            <div className="bg-[#D99951] rounded-[50px] px-3">
+                            <div className="bg-[#D99951] rounded-[50px] px-2 md:px-3">
                               <p>{item.properties.uploaded}</p>
                             </div>
                           )}
                           {item.properties.language && (
-                            <div className="bg-[#D96151] rounded-[50px] px-3">
+                            <div className="bg-[#D96151] rounded-[50px] px-2 md:px-3">
                               <p>{item.properties.language}</p>
                             </div>
                           )}
                           {item.properties.type && (
-                            <div className="bg-[#94A33B] rounded-[50px] px-3">
+                            <div className="bg-[#94A33B] rounded-[50px] px-2 md:px-3">
                               <p>{item.properties.type}</p>
                             </div>
                           )}
@@ -521,7 +536,7 @@ function Index() {
               </div>
             ))}
           </div>
-          <div className="flex justify-between items-center my-5">
+          <div className="hidden md:flex justify-between items-center my-5">
             <div className="bg-gradient-to-l from-[#46398C] to-[rgba(53,42,113,0)] h-[1px] w-5/12"></div>
             <div className="h-12 w-36 bg-gradient-to-bl from-[#9186FF] via-[#6D61FF] to-[#574AFF] p-[1.5px] rounded-[50px] cursor-pointer">
               <div
