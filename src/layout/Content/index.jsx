@@ -245,7 +245,7 @@ function Index() {
           ))}
         </div>
       </div>
-      <div className="col-span-9 h-fit">
+      <div className="col-span-12 md:col-span-9 h-fit">
         {/* Rising Star */}
         <div className="flex gap-1 mb-10">
           <div className="w-8/12 p-3">
@@ -343,13 +343,16 @@ function Index() {
             Recommanded for you
           </h1>
           <div
-            className={`my-3 flex justify-between gap-4 flex-wrap overflow-hidden ${
+            className={`my-3 flex justify-between gap-4 flex-nowrap md:flex-wrap overflow-x-auto md:overflow-hidden ${
               !moreRecommanded ? "h-[344px]" : ""
             }`}
           >
             {recommanded.map((item, index) => (
-              <div className="w-[340px] overflow-hidden" key={index}>
-                <div className="rounded-[50px] w-[340px] h-[220px] relative overflow-hidden mb-1">
+              <div
+                className="w-8/12 md:w-[340px] flex-shrink-0 overflow-hidden"
+                key={index}
+              >
+                <div className="rounded-[50px] w-[218px] md:w-[340px] h-[160px] md:h-[220px] relative overflow-hidden mb-1">
                   <img
                     src={item.imageLink}
                     alt="recommanded"
@@ -374,27 +377,27 @@ function Index() {
                   <div className="">
                     <h1>{item.name}</h1>
                     <p className="text-[#7162BF] text-[13px]">{item.user}</p>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-3 text-[13px]">
                       {item.properties && (
                         <>
                           {item.properties.watched && (
-                            <div className="bg-[#735AF0] rounded-[50px] px-3 flex items-center gap-2">
+                            <div className="bg-[#735AF0] rounded-[50px] px-2 md:px-3 flex items-center gap-2">
                               <img src={eye} alt="eye" />
                               <p>{item.properties.watched}</p>
                             </div>
                           )}
                           {item.properties.uploaded && (
-                            <div className="bg-[#D99951] rounded-[50px] px-3">
+                            <div className="bg-[#D99951] rounded-[50px] px-2 md:px-3">
                               <p>{item.properties.uploaded}</p>
                             </div>
                           )}
                           {item.properties.language && (
-                            <div className="bg-[#D96151] rounded-[50px] px-3">
+                            <div className="bg-[#D96151] rounded-[50px] px-2 md:px-3">
                               <p>{item.properties.language}</p>
                             </div>
                           )}
                           {item.properties.type && (
-                            <div className="bg-[#94A33B] rounded-[50px] px-3">
+                            <div className="bg-[#94A33B] rounded-[50px] px-2 md:px-3">
                               <p>{item.properties.type}</p>
                             </div>
                           )}
@@ -406,7 +409,7 @@ function Index() {
               </div>
             ))}
           </div>
-          <div className="flex justify-between items-center my-5">
+          <div className="hidden md:flex justify-between items-center my-5">
             <div className="bg-gradient-to-l from-[#46398C] to-[rgba(53,42,113,0)] h-[1px] w-5/12"></div>
             <div className="h-12 w-36 bg-gradient-to-bl from-[#9186FF] via-[#6D61FF] to-[#574AFF] p-[1.5px] rounded-[50px] cursor-pointer">
               <div
@@ -431,7 +434,7 @@ function Index() {
               {games.length > 0 &&
                 games.map((game, index) => (
                   <div
-                    className="w-[234px] h-[274px] flex-shrink-0 rounded-[50px] bg-slate-400 overflow-hidden relative cursor-pointer mb-6"
+                    className="w-[180px] md:w-[234px] h-[211px] md:h-[274px] flex-shrink-0 rounded-[50px] bg-slate-400 overflow-hidden relative cursor-pointer mb-6"
                     key={index}
                   >
                     <img
